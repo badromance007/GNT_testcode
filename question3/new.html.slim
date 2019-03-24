@@ -1,0 +1,40 @@
+h1 New Car
+
+= form_with model: @car, local: true do |f|
+  - if @car.errors.any?
+    div
+      h2
+        = pluralize(@car.errors.count, "error")
+        | prohibited this car from being saved:
+      ul
+        - @car.errors.full_messages.each do |msg|
+          li= msg
+
+  p
+    = f.label :maker
+    br
+    = f.text_field :maker
+
+  p
+    = f.label :model
+    br
+    = f.text_field :model
+
+  p
+    = f.label :year
+    br
+    = f.select :year, (Time.now.year + 1).downto(1900).to_a
+ 
+  p
+    = f.label :color
+    br
+    = f.text_field :color
+
+  p
+    = f.label :price
+    br
+    = f.text_field :price
+ 
+  p
+    = f.submit
+    
